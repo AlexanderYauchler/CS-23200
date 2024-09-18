@@ -1,16 +1,14 @@
-/* File: primes.c */
-/* Author: Britton Wolfe */
-/* Date: July 16, 2009 */
-/* This program outputs all the primes in the range given */
-/* by the command line arguments */
-
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <math.h>
+#include <xmmintrin.h>
+#include <pthread.h>
 
 int main(int argc, const char** argv){
-
-    int lowerBound, upperBound;
+    uint_fast32_t lowerBound, upperBound;
 
     if(argc != 3){
         fprintf(stderr, "USAGE: %s lowerBound upperBound\n", argv[0]);
@@ -26,19 +24,29 @@ int main(int argc, const char** argv){
 	          " must be positive.\n", lowerBound, upperBound);
         return -2;
     }
+
+    // Buffer to print in chunks (silly fast)
+    char buffer[upperBound];
+    setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   
-    {
+    {   // Primes main loop
         // Whether we have found a prime or not
         unsigned flag = 1;
 
         // Loop through our range
-        for (int curr = lowerBound; curr <= upperBound; curr++) {
+        for (uint_fast32_t curr = lowerBound; curr <= upperBound; curr++) {
             // Not composite nubers, no need to consider
             if (curr == 1 || curr == 0) { continue; }
 
             flag = 1;
+
+            // INTEL fast sqrt()
+            __m128 value = _mm_set_ss(curr);
+            __m128 result = _mm_sqrt_ss(value);
+            int fsqrt = _mm_cvtss_si32(result);
+
             // Check from 2 -> (num / 2)
-            for (int check = 2; check <= curr / 2; check++) {
+            for (uint_fast32_t check = 2; check <= fsqrt; check++) {
                 // Check if it is divisible by our current step (non-prime)
                 if (curr % check == 0) {
                     flag = 0;
@@ -47,10 +55,10 @@ int main(int argc, const char** argv){
             }
 
             // If our flag is still set, we have a prime, print it!
-            if (flag) {
-                printf("%d\n", curr);
-            }
+             if (flag) { printf("%u\n", curr); }
         }
+
+        fflush(stdout);
     }
 
     // Toodaloo!
