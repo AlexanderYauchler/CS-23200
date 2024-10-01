@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/alexa/Documents/C Programs/Homework_CS-23200/hw4",
+      "program": "c:/Users/alexa/Documents/C Programs/Homework_CS-23200/hw4/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
