@@ -1,0 +1,8 @@
+createTrieNode()    :   Alexander
+indexPage()         :   Colton
+addWordOccurrence() :   Alexander
+printTrieContents() :   Colton
+freeTrieMemory()    :   Colton
+main()              :   Alexander
+
+Total Time Spent : ~6hrs
