@@ -30,7 +30,7 @@ void insertBack(struct listNode *pNode, const char *addr);
  * prints the addresses from pNode to the end of the list,
  *   one on each line
  */
-void printAddresses(const struct listNode *pNode);
+void printAddresses(struct listNode *pNode);
 
 /*
  * frees the memory associated with this node and all subsequent nodes
@@ -162,7 +162,7 @@ void insertBack(struct listNode *pNode, const char *addr){
  * prints the addresses from pNode to the end of the list,
  *   one on each line
  */
-void printAddresses(const struct listNode *pNode){
+void printAddresses(struct listNode *pNode){
   struct listNode* current = pNode;
 
   // Iterate through list
