@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -g -std=c99
 
-TARGET = webSearch
-SRC = webSearch.c crawler.c indexPage.c
+TARGET = webSearch.exe
+SRC = webSearch.c crawler.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
@@ -14,6 +14,6 @@ $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm $(OBJ) $(TARGET)
 
 rebuild: clean all

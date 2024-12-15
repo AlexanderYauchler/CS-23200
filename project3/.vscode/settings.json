@@ -67,6 +67,10 @@
     "limits": "cpp",
     "new": "cpp",
     "crawler.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "string.h": "c",
+    "stdio.h": "c",
+    "ctype.h": "c",
+    "random": "c"
   }
 }
