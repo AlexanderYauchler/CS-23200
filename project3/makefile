@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -g -std=c99
 
 TARGET = webSearch.exe
-SRC = webSearch.c crawler.c
+SRC = webSearch.c part1/crawler.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
