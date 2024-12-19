@@ -1,7 +1,7 @@
 #ifndef _WEB_SEACH
 #define _WEB_SEARCH
 
-#include "part1/crawler.h"
+#include "crawler.h"
 
 typedef struct Scores {
     double scores[3];
